@@ -8,13 +8,11 @@
 import UIKit
 
 final class ViewController: UIViewController {
-
-    private let presenter = Presenter()
-    weak private var viewOutputDelegate: ViewOutputDelegate?
     
     private var count = 0
     private var testData: [Crypto] = []
-    
+    private let randomCount = RandomCount()
+    private let model = Crypto.testData
     
     // MARK: - UI
     
@@ -59,7 +57,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.backgroundColor = .systemBackground
         view.addSubview(nameLabel)
         view.addSubview(acronymLabel)
@@ -69,37 +67,36 @@ final class ViewController: UIViewController {
         title = "Crypto"
         
         getCryptoButton.addTarget(self, action: #selector(didTapGetCrypto), for: .touchUpInside)
-      
-        presenter.setViewInputDelegate(viewInputDelegate: self)
-        self.viewOutputDelegate = presenter
-        self.viewOutputDelegate?.getData()
-  
+        
+        setupData(with: model)
+        setupInitialState()
+        
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         nameLabel.frame = CGRect(
             x: 16,
             y: (navigationController?.navigationBar.frame.height ?? 0) + 32,
             width: view.width - 32,
             height: 50
         )
-
+        
         acronymLabel.frame = CGRect(
             x: 16,
             y: nameLabel.bottom + 4,
             width: view.width - 32,
             height: 30
         )
-
+        
         valueLabel.frame = CGRect(
             x: 16,
             y: acronymLabel.bottom + 4,
             width: view.width - 32,
             height: 30
         )
-
+        
         getCryptoButton.frame = CGRect(
             x: 16,
             y: valueLabel.bottom + 16,
@@ -108,14 +105,6 @@ final class ViewController: UIViewController {
         )
     }
     
-    @objc func didTapGetCrypto () {
-        self.viewOutputDelegate?.getRandomCount()
-    }
-
-}
-
-
-extension ViewController: ViewInputDelegate {
     func setupInitialState() {
         displayData(i: count)
     }
@@ -126,14 +115,17 @@ extension ViewController: ViewInputDelegate {
     
     func displayData(i: Int) {
         if testData.count >= 0 && count <= (testData.count - 1) && count >= 0 {
-            nameLabel.text = testData[i].name
-            acronymLabel.text = testData[i].acronym
-            valueLabel.text = String(testData[i].value)
-            
+            nameLabel.text      = testData[i].name
+            acronymLabel.text    = testData[i].acronym
+            valueLabel.text     = String(testData[i].value)
         } else {
             print("Sorry, no data")
         }
     }
     
+    @objc func didTapGetCrypto () {
+        displayData(i: randomCount.getRandomCount(data: testData))
+    }
     
 }
+

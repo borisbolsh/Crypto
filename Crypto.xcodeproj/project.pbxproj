@@ -7,19 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45D8617827779E3A00D9307F /* RandomCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8617727779E3A00D9307F /* RandomCount.swift */; };
 		45E8DDEF2775F11B004FE340 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8DDEE2775F11B004FE340 /* AppDelegate.swift */; };
 		45E8DDF12775F11B004FE340 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8DDF02775F11B004FE340 /* SceneDelegate.swift */; };
 		45E8DDF32775F11B004FE340 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E8DDF22775F11B004FE340 /* ViewController.swift */; };
 		45E8DDF82775F11D004FE340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45E8DDF72775F11D004FE340 /* Assets.xcassets */; };
 		45E8DDFB2775F11D004FE340 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45E8DDF92775F11D004FE340 /* LaunchScreen.storyboard */; };
 		45F47A422776425F0081ADED /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F47A412776425F0081ADED /* Crypto.swift */; };
-		45F47A442776550F0081ADED /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F47A432776550F0081ADED /* Presenter.swift */; };
-		45F47A46277655660081ADED /* ViewOutputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F47A45277655660081ADED /* ViewOutputDelegate.swift */; };
-		45F47A48277655770081ADED /* ViewInputDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F47A47277655770081ADED /* ViewInputDelegate.swift */; };
 		45F47A4B27765BFE0081ADED /* UIView+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F47A4A27765BFE0081ADED /* UIView+ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45D8617727779E3A00D9307F /* RandomCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomCount.swift; sourceTree = "<group>"; };
 		45E8DDEB2775F11B004FE340 /* Crypto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Crypto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E8DDEE2775F11B004FE340 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45E8DDF02775F11B004FE340 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,9 +27,6 @@
 		45E8DDFA2775F11D004FE340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45E8DDFC2775F11D004FE340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45F47A412776425F0081ADED /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
-		45F47A432776550F0081ADED /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
-		45F47A45277655660081ADED /* ViewOutputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOutputDelegate.swift; sourceTree = "<group>"; };
-		45F47A47277655770081ADED /* ViewInputDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewInputDelegate.swift; sourceTree = "<group>"; };
 		45F47A4A27765BFE0081ADED /* UIView+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -45,6 +41,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45D861752777953F00D9307F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				45E8DDF22775F11B004FE340 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		45D8617627779E2300D9307F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				45D8617727779E3A00D9307F /* RandomCount.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		45E8DDE22775F11B004FE340 = {
 			isa = PBXGroup;
 			children = (
@@ -64,9 +76,9 @@
 		45E8DDED2775F11B004FE340 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
+				45D861752777953F00D9307F /* Controllers */,
 				45F47A4D277666530081ADED /* Models */,
 				45E8DE042775F1A4004FE340 /* Views */,
-				45F47A4C277666380081ADED /* Presenters */,
 				45E8DE032775F198004FE340 /* Resourses */,
 				45E8DE022775F17E004FE340 /* Delegate */,
 				45E8DDFC2775F11D004FE340 /* Info.plist */,
@@ -95,9 +107,6 @@
 		45E8DE042775F1A4004FE340 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				45E8DDF22775F11B004FE340 /* ViewController.swift */,
-				45F47A45277655660081ADED /* ViewOutputDelegate.swift */,
-				45F47A47277655770081ADED /* ViewInputDelegate.swift */,
 				45E8DE052775F1AD004FE340 /* Storyboards */,
 			);
 			path = Views;
@@ -119,17 +128,10 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		45F47A4C277666380081ADED /* Presenters */ = {
-			isa = PBXGroup;
-			children = (
-				45F47A432776550F0081ADED /* Presenter.swift */,
-			);
-			path = Presenters;
-			sourceTree = "<group>";
-		};
 		45F47A4D277666530081ADED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				45D8617627779E2300D9307F /* Helpers */,
 				45F47A412776425F0081ADED /* Crypto.swift */,
 			);
 			path = Models;
@@ -205,14 +207,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45D8617827779E3A00D9307F /* RandomCount.swift in Sources */,
 				45F47A4B27765BFE0081ADED /* UIView+ext.swift in Sources */,
 				45F47A422776425F0081ADED /* Crypto.swift in Sources */,
 				45E8DDF32775F11B004FE340 /* ViewController.swift in Sources */,
-				45F47A46277655660081ADED /* ViewOutputDelegate.swift in Sources */,
 				45E8DDEF2775F11B004FE340 /* AppDelegate.swift in Sources */,
-				45F47A442776550F0081ADED /* Presenter.swift in Sources */,
 				45E8DDF12775F11B004FE340 /* SceneDelegate.swift in Sources */,
-				45F47A48277655770081ADED /* ViewInputDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
