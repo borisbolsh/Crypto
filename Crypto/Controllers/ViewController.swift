@@ -11,7 +11,6 @@ final class ViewController: UIViewController {
     
     private var count = 0
     private var testData: [Crypto] = []
-    private let randomCount = RandomCount()
     private let model = Crypto.testData
     
     // MARK: - UI
@@ -105,15 +104,15 @@ final class ViewController: UIViewController {
         )
     }
     
-    func setupInitialState() {
+    private func setupInitialState() {
         displayData(i: count)
     }
     
-    func setupData(with testData: ([Crypto])) {
+    private func setupData(with testData: ([Crypto])) {
         self.testData = testData
     }
     
-    func displayData(i: Int) {
+    private func displayData(i: Int) {
         if testData.count >= 0 && count <= (testData.count - 1) && count >= 0 {
             nameLabel.text      = testData[i].name
             acronymLabel.text    = testData[i].acronym
@@ -123,8 +122,8 @@ final class ViewController: UIViewController {
         }
     }
     
-    @objc func didTapGetCrypto () {
-        displayData(i: randomCount.getRandomCount(data: testData))
+    @objc private func didTapGetCrypto () {
+        displayData(i: RandomCount.getRandomCount(data: testData))
     }
     
 }

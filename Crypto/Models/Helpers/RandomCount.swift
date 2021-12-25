@@ -7,8 +7,8 @@
 
 import Foundation
 
-class RandomCount {
-    func getRandomCount(data: [Crypto]) -> Int {
+final class RandomCount {
+    static func getRandomCount(data: [Crypto]) -> Int {
         let randomCount = Int.random(in: 0 ..< data.count)
         return randomCount
     }
