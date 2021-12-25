@@ -16,10 +16,10 @@ struct Crypto {
 extension Crypto {
     static var testData = [
         Crypto(name: "Bitcion", acronym: "BTC", value: 55000),
-        Crypto(name: "Etherium", acronym: "ETH", value: 3500),
-        Crypto(name: "Ripple", acronym: "XRP", value: 589),
-        Crypto(name: "Stellar", acronym: "XLM", value: 20),
-        Crypto(name: "Algorand", acronym: "ALGO", value: 3)
+        Crypto(name: "Etherium", acronym: "ETH", value: 35000),
+        Crypto(name: "Ripple", acronym: "XRP", value: 999),
+        Crypto(name: "Stellar", acronym: "XLM", value: 555),
+        Crypto(name: "Algorand", acronym: "ALGO", value: 333)
     ]
 }
 

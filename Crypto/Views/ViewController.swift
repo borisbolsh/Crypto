@@ -9,10 +9,20 @@ import UIKit
 
 final class ViewController: UIViewController {
 
+    private let presenter = Presenter()
+    weak private var viewOutputDelegate: ViewOutputDelegate?
+    
+    private var count = 0
+    private var testData: [Crypto] = []
+    
+    
+    // MARK: - UI
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Name label"
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 18, weight: .regular)
         return label
     }()
@@ -21,6 +31,7 @@ final class ViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Acronym label"
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 15, weight: .regular)
         return label
     }()
@@ -29,51 +40,100 @@ final class ViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 0
         label.text = "Value label"
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 15, weight: .regular)
         return label
     }()
     
     private let getCryptoButton: UIButton = {
         let button = UIButton()
-        button.tintColor = .label
-        button.setTitle("Test Button", for: .normal)
+        button.setTitle("Random crypto", for: .normal)
+        button.backgroundColor = .link
+        button.layer.cornerRadius = 8.0
+        
         return button
     }()
     
-    private lazy var cryptoStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [nameLabel, acronymLabel, valueLabel, getCryptoButton])
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
-    }()
+    
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+
         view.backgroundColor = .systemBackground
-        configureUI()
+        view.addSubview(nameLabel)
+        view.addSubview(acronymLabel)
+        view.addSubview(valueLabel)
+        view.addSubview(getCryptoButton)
+        
+        title = "Crypto"
+        
+        getCryptoButton.addTarget(self, action: #selector(didTapGetCrypto), for: .touchUpInside)
+      
+        presenter.setViewInputDelegate(viewInputDelegate: self)
+        self.viewOutputDelegate = presenter
+        self.viewOutputDelegate?.getData()
+  
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
 
-    private func configureUI() {
-        
-        view.addSubview(cryptoStackView)
-        cryptoStackView.addSubview(nameLabel)
-        cryptoStackView.addSubview(acronymLabel)
-        cryptoStackView.addSubview(valueLabel)
-        cryptoStackView.addSubview(getCryptoButton)
-        
-        cryptoStackView.frame = CGRect(
-            x: 20,
-            y: 20,
-            width: view.width - 30,
-            height: cryptoStackView.height
-       )
-        
-        
+        nameLabel.frame = CGRect(
+            x: 16,
+            y: (navigationController?.navigationBar.frame.height ?? 0) + 32,
+            width: view.width - 32,
+            height: 50
+        )
+
+        acronymLabel.frame = CGRect(
+            x: 16,
+            y: nameLabel.bottom + 4,
+            width: view.width - 32,
+            height: 30
+        )
+
+        valueLabel.frame = CGRect(
+            x: 16,
+            y: acronymLabel.bottom + 4,
+            width: view.width - 32,
+            height: 30
+        )
+
+        getCryptoButton.frame = CGRect(
+            x: 16,
+            y: valueLabel.bottom + 16,
+            width: view.width - 32,
+            height: 44
+        )
+    }
+    
+    @objc func didTapGetCrypto () {
+        self.viewOutputDelegate?.getRandomCount()
+    }
+
+}
+
+
+extension ViewController: ViewInputDelegate {
+    func setupInitialState() {
+        displayData(i: count)
+    }
+    
+    func setupData(with testData: ([Crypto])) {
+        self.testData = testData
+    }
+    
+    func displayData(i: Int) {
+        if testData.count >= 0 && count <= (testData.count - 1) && count >= 0 {
+            nameLabel.text = testData[i].name
+            acronymLabel.text = testData[i].acronym
+            valueLabel.text = String(testData[i].value)
+            
+        } else {
+            print("Sorry, no data")
+        }
     }
     
     
 }
-
