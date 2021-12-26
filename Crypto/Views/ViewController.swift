@@ -9,10 +9,8 @@ import UIKit
 
 final class ViewController: UIViewController {
     
-    private var count = 0
-    private var testData: [Crypto] = []
-    private let model = Crypto.testData
-    
+    private var viewModel = ViewModel()
+
     // MARK: - UI
     
     private let nameLabel: UILabel = {
@@ -65,11 +63,20 @@ final class ViewController: UIViewController {
         
         title = "Crypto"
         
+        viewModel.cryptoName.bind { [weak self] cryptoName in
+            self?.nameLabel.text = cryptoName
+        }
+        
+        viewModel.acronymName.bind { [weak self] acronymName in
+            self?.acronymLabel.text = acronymName
+        }
+        
+        viewModel.valueName.bind { [weak self] valueName in
+            self?.valueLabel.text = valueName
+        }
+        
         getCryptoButton.addTarget(self, action: #selector(didTapGetCrypto), for: .touchUpInside)
-        
-        setupData(with: model)
-        setupInitialState()
-        
+    
     }
     
     override func viewDidLayoutSubviews() {
@@ -104,26 +111,8 @@ final class ViewController: UIViewController {
         )
     }
     
-    private func setupInitialState() {
-        displayData(i: count)
-    }
-    
-    private func setupData(with testData: ([Crypto])) {
-        self.testData = testData
-    }
-    
-    private func displayData(i: Int) {
-        if testData.count >= 0 && count <= (testData.count - 1) && count >= 0 {
-            nameLabel.text      = testData[i].name
-            acronymLabel.text    = testData[i].acronym
-            valueLabel.text     = String(testData[i].value)
-        } else {
-            print("Sorry, no data")
-        }
-    }
-    
-    @objc private func didTapGetCrypto () {
-        displayData(i: RandomCount.getRandomCount(data: testData))
+    @objc private func didTapGetCrypto() {
+        viewModel.getCryptoButtonPressed()
     }
     
 }
